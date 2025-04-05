@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/know-me-better/static/css/main.ba4bef1c.css",
+    "main.js": "/know-me-better/static/js/main.ac47d0aa.js",
+    "static/media/lamp6.png": "/know-me-better/static/media/lamp6.048c4c03b8c00a0c0f7e.png",
+    "index.html": "/know-me-better/index.html",
+    "main.ba4bef1c.css.map": "/know-me-better/static/css/main.ba4bef1c.css.map",
+    "main.ac47d0aa.js.map": "/know-me-better/static/js/main.ac47d0aa.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ba4bef1c.css",
+    "static/js/main.ac47d0aa.js"
+  ]
+}
