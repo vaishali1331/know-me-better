@@ -1,60 +1,169 @@
 import React from 'react';
 import styled from 'styled-components';
 import BackButton from '../components/common/BackButton';
+import StarryText from '../components/common/StarryText';
+import HighlightedText from '../components/common/HighlightedText';
 
 const Container = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
   color: white;
   position: relative;
+  overflow: hidden;
+  padding-top: 4rem;
+`;
+
+const Header = styled.div`
+  width: 100%;
+  padding: 2rem;
+  text-align: center;
+  z-index: 2;
+  margin-top: 4rem;
 `;
 
 const Content = styled.div`
-  max-width: 800px;
-  padding: 2rem;
+  width: 100%;
+  max-height: calc(80vh - 15rem);
+  padding: 2rem 2rem 2rem;
+  text-align: left;
   z-index: 2;
-`;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
-const Title = styled.h1`
-  font-size: 3rem;
-  margin-bottom: 2rem;
-  color: #ffd700;
-  text-align: center;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 10%,
+    black 80%,
+    transparent 100%
+  );
 `;
 
 const Timeline = styled.div`
   position: relative;
   padding: 2rem 0;
-`;
-
-const TimelineItem = styled.div`
-  position: relative;
-  padding-left: 2rem;
-  margin-bottom: 2rem;
   
   &:before {
     content: '';
     position: absolute;
-    left: 0;
+    left: 50%;
     top: 0;
+    bottom: 0;
     width: 2px;
-    height: 100%;
-    background: #ffd700;
+    background: linear-gradient(to bottom, 
+      transparent 0%,
+      #ffd700 20%,
+      #ffd700 80%,
+      transparent 100%
+    );
+    transform: translateX(-1px);
+  }
+`;
+
+const TimelineItem = styled.div<{ $isLast?: boolean }>`
+  position: relative;
+  width: 40%;
+  padding: 2rem;
+  box-sizing: border-box;
+  cursor: pointer;
+  
+  &:nth-child(odd) {
+    margin-left: 50%;
+    padding-left: 2rem;
+    
+    &:before {
+      content: '';
+      position: absolute;
+      left: -2rem;
+      top: 50%;
+      width: 2rem;
+      height: 2px;
+      background: #ffd700;
+      transform: translateY(-50%);
+    }
+  }
+  
+  &:nth-child(even) {
+    margin-left: 10%;
+    padding-right: 2rem;
+    text-align: right;
+    
+    &:before {
+      content: '';
+      position: absolute;
+      right: -2rem;
+      top: 50%;
+      width: 2rem;
+      height: 2px;
+      background: #ffd700;
+      transform: translateY(-50%);
+    }
   }
   
   &:after {
     content: '';
     position: absolute;
-    left: -6px;
-    top: 0;
-    width: 14px;
-    height: 14px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     background: #ffd700;
+    box-shadow: 0 0 10px #ffd700;
+    ${props => props.$isLast ? 'animation: pulse 2s infinite;' : ''}
   }
+  
+  &:nth-child(odd):after {
+    left: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  &:nth-child(even):after {
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7);
+    }
+    70% {
+      box-shadow: 0 0 0 10px rgba(255, 215, 0, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
+    }
+  }
+`;
+
+const TimelineContent = styled.div`
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: 8px;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  
+  &:hover {
+    transform: translateY(-5px);
+  }
+`;
+
+const TimelineHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 `;
 
 const TimelineTitle = styled.h3`
@@ -63,14 +172,65 @@ const TimelineTitle = styled.h3`
   color: #ffd700;
 `;
 
+const CompanyName = styled.span`
+  font-size: 1rem;
+  color: #fff;
+  display: block;
+  margin-bottom: 0.3rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
 const TimelineDate = styled.span`
   font-size: 0.9rem;
   color: #aaa;
+  display: block;
 `;
 
-const TimelineDescription = styled.p`
-  margin-top: 0.5rem;
-  line-height: 1.6;
+const TimelineDescription = styled.div<{ $isOdd: boolean }>`
+  position: absolute;
+  top: 0;
+  ${props => props.$isOdd ? 'right: -100%;' : 'left: -100%;'}
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  padding: 2rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+  border-radius: 12px;
+  overflow-y: auto;
+  
+  ${TimelineContent}:hover & {
+    ${props => props.$isOdd ? 'right: 0;' : 'left: 0;'}
+  }
+  
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: #ffd700;
+    border-radius: 3px;
+  }
+`;
+
+const DescriptionItem = styled.div`
+  margin-bottom: 0.5rem;
+  color: #fff;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  
+  &:before {
+    content: '•';
+    color: #ffd700;
+    margin-right: 0.5rem;
+  }
+`;
+
+const StyledHighlightedText = styled(HighlightedText)`
+  font-size: 0.9rem;
+  line-height: 1.5;
 `;
 
 interface ExperienceProps {
@@ -80,36 +240,90 @@ interface ExperienceProps {
 const Experience: React.FC<ExperienceProps> = ({ onBack }) => {
   const experiences = [
     {
-      title: 'Senior Developer',
-      company: 'Tech Corp',
-      date: '2020 - Present',
-      description: 'Leading development teams and implementing innovative solutions.'
+      title: 'Technical Lead',
+      company: 'Inncircles Technologies Pvt. Ltd.',
+      date: 'July 2024 - Present',
+      description: {
+        text: 'Led a team of 10 engineers, ensuring smooth collaboration and task completion within deadlines. Took full responsibility for deployments, ensuring seamless releases with minimal downtime. Managed end-to-end project execution, from requirement analysis to final delivery. Oversaw code reviews, performance optimizations, and best practices implementation. Coordinated with cross-functional teams to align technical solutions with business goals. Mentored junior developers, fostering skill development and team growth. Identified and resolved critical technical challenges to maintain system stability.',
+        highlights: [
+          'team of 10 engineers',
+          'smooth collaboration',
+          'deployments',
+          'seamless releases',
+          'project execution',
+          'requirement analysis',
+          'code reviews',
+          'performance optimizations',
+          'best practices',
+          'cross-functional teams',
+          'technical solutions',
+          'Mentored',
+          'skill development',
+          'technical challenges'
+        ]
+      }
     },
     {
-      title: 'Software Engineer',
-      company: 'Innovate Solutions',
-      date: '2018 - 2020',
-      description: 'Developed and maintained web applications using modern technologies.'
+      title: 'Product Developer',
+      company: 'Inncircles Technologies Pvt. Ltd.',
+      date: 'October 2021 - July 2024',
+      description: {
+        text: 'Developed high-quality features with a strong focus on delivering bug-free code. Conducted in-depth task analysis to ensure clear understanding and efficient execution. Followed best coding practices and performed thorough testing to maintain software stability. Collaborated with cross-functional teams to refine requirements and enhance product functionality. Optimized existing code for better performance, scalability, and maintainability.',
+        highlights: [
+          'high-quality features',
+          'bug-free code',
+          'task analysis',
+          'best coding practices',
+          'thorough testing',
+          'software stability',
+          'cross-functional teams',
+          'product functionality',
+          'performance',
+          'scalability',
+          'maintainability'
+        ]
+      }
     },
     {
-      title: 'Junior Developer',
-      company: 'StartUp Inc',
-      date: '2016 - 2018',
-      description: 'Worked on frontend development and user interface design.'
+      title: 'Data Analyst',
+      company: 'TechLearn Pvt Ltd',
+      date: 'January 2021 - October 2021',
+      description: {
+        text: 'Analyzed complex datasets to extract meaningful insights and drive data-driven decision-making. Created interactive dashboards and reports to visualise key performance metrics.',
+        highlights: [
+          'complex datasets',
+          'meaningful insights',
+          'data-driven decision-making',
+          'interactive dashboards',
+          'performance metrics'
+        ]
+      }
     }
   ];
 
   return (
     <Container>
       <BackButton onBack={onBack} />
+      <Header>
+        <StarryText>Experience</StarryText>
+      </Header>
       <Content>
-        <Title>My Experience</Title>
         <Timeline>
           {experiences.map((exp, index) => (
-            <TimelineItem key={index}>
-              <TimelineTitle>{exp.title}</TimelineTitle>
-              <TimelineDate>{exp.company} • {exp.date}</TimelineDate>
-              <TimelineDescription>{exp.description}</TimelineDescription>
+            <TimelineItem key={index} $isLast={index === experiences.length - 1}>
+              <TimelineContent>
+                <TimelineHeader>
+                  <TimelineTitle>{exp.title}</TimelineTitle>
+                  <CompanyName>{exp.company}</CompanyName>
+                  <TimelineDate>{exp.date}</TimelineDate>
+                </TimelineHeader>
+                <TimelineDescription $isOdd={index % 2 === 0}>
+                  <StyledHighlightedText
+                    text={exp.description.text}
+                    highlights={exp.description.highlights}
+                  />
+                </TimelineDescription>
+              </TimelineContent>
             </TimelineItem>
           ))}
         </Timeline>

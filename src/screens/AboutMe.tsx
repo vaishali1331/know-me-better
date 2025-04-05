@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import BackButton from '../components/common/BackButton';
 import StarryText from '../components/common/StarryText';
-import { Experience } from '../components/sections/ExperienceComponents';
+import HighlightedText from '../components/common/HighlightedText';
 
 const Container = styled.div`
   width: 100%;
@@ -49,9 +49,7 @@ const Content = styled.div`
   );
 `;
 
-const Description = styled.p`
-  font-size: 1.2rem;
-  line-height: 1.6;
+const StyledHighlightedText = styled(HighlightedText)`
   margin-bottom: 1.5rem;
 `;
 
@@ -60,33 +58,19 @@ interface AboutMeProps {
 }
 
 const AboutMe: React.FC<AboutMeProps> = ({ onBack }) => {
-  const inncirclesExperience = {
-    company: "Inncircles Technologies Pvt. Ltd.",
-    roles: [
-      {
-        title: "Technical Lead",
-        period: "July 2024 - Present",
-        responsibilities: [
-          "Lead a team of 10 engineers",
-          "Ensure smooth collaboration and task completion",
-          "Take responsibility for deployments",
-          "Manage end-to-end project execution",
-          "Oversee code reviews and performance optimizations",
-          "Coordinate with cross-functional teams",
-          "Mentor junior developers"
-        ]
-      },
-      {
-        title: "Product Developer",
-        period: "October 2021 - July 2024",
-        responsibilities: [
-          "Develop high-quality features",
-          "Conduct task analysis",
-          "Follow best coding practices",
-          "Collaborate with cross-functional teams",
-          "Optimize code for better performance, scalability, and maintainability"
-        ]
-      }
+  const highlightedText = {
+    text: "A Technical Lead with over three years of experience in web development & project management, specialising in solving complex technical challenges with cutting-edge technologies and industry best practices. Skilled at analysing multiple solutions to a problem and identifying the most efficient approach. Known for a hands-on approach, providing technical expertise, strategic guidance & leadership to drive successful project delivery while ensuring high-quality standards and performance optimisation.",
+    highlights: [
+      "Technical Lead",
+      "web development",
+      "project management",
+      "technical challenges",
+      "cutting-edge technologies",
+      "best practices",
+      "technical expertise",
+      "strategic guidance",
+      "leadership",
+      "performance optimisation"
     ]
   };
 
@@ -97,13 +81,10 @@ const AboutMe: React.FC<AboutMeProps> = ({ onBack }) => {
         <StarryText>About Me</StarryText>
       </Header>
       <Content>
-        <Description>
-          Vaishali Gangwar is a Technical Lead with approximately 3.5 years of experience in web development and project management, primarily at Inncircles Technologies Pvt. Ltd.
-        </Description>
-        <Experience {...inncirclesExperience} />
-        <Description>
-          Vaishali's experience demonstrates a strong track record of technical leadership and effective contributions to software development projects.
-        </Description>
+        <StyledHighlightedText
+          text={highlightedText.text}
+          highlights={highlightedText.highlights}
+        />
       </Content>
     </Container>
   );

@@ -47,9 +47,9 @@ const Home: React.FC = () => {
 
   const directions = [
     { text: 'About Me', angle: -45, path: 'about' },
-    { text: 'Interests', angle: -15, path: 'interests' },
+    { text: 'Projects', angle: -15, path: 'projects' },
     { text: 'Experience', angle: 15, path: 'experience' },
-    { text: 'Projects', angle: 45, path: 'projects' },
+    { text: 'Skills & Interests', angle: 45, path: 'interests' },
     { text: 'Socials', angle: 75, path: 'socials' }
   ];
 
