@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import BackButton from '../components/BackButton';
+import BackButton from '../components/common/BackButton';
 
 const Container = styled.div`
   width: 100%;

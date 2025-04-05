@@ -6,10 +6,10 @@ import Experience from '../screens/Experience';
 import Interests from '../screens/Interests';
 import Projects from '../screens/Projects';
 import Socials from '../screens/Socials';
-import DirectionPole from './DirectionPole';
-import Lamp from './Lamp';
-import { ScreenContainer } from './ScreenContainer';
-import TextContainer from './TextContainer';
+import DirectionPole from '../components/home/DirectionPole';
+import TextContainer from '../components/home/TextContainer';
+import Lamp from '../components/home/Lamp';
+import { ScreenContainer } from '../components/common/ScreenContainer';
 
 const HomeContainer = styled.div`
   position: relative;

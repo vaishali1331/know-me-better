@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import BackButton from '../components/BackButton';
-import StarryText from '../components/StarryText';
-import { Experience } from '../components/ExperienceComponents';
+import BackButton from '../components/common/BackButton';
+import StarryText from '../components/common/StarryText';
+import { Experience } from '../components/sections/ExperienceComponents';
 
 const Container = styled.div`
   width: 100%;

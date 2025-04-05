@@ -32,7 +32,7 @@ const TextContainer: React.FC<TextContainerProps> = ({ isNeon }) => {
             transition={{ duration: 1 }}
         >
             <Name isNeon={isNeon}>
-                Vaishali Gangwar
+                {'Vaishali Gangwar'}
             </Name>
             <Subtitle isNeon={isNeon}>
                 A full stack developer

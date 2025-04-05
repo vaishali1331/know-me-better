@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import Home from './components/Home';
-import StarsBackground from './components/StarsBackground';
+import Home from './screens/Home';
+import StarsBackground from './components/common/StarsBackground';
 import { createGlobalStyle } from 'styled-components';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const GlobalStyle = createGlobalStyle`
   * {
