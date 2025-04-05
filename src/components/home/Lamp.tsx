@@ -10,6 +10,68 @@ const LampContainer = styled.div`
   margin-bottom: 0rem;
 `;
 
+const SwitchContainer = styled.div`
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`;
+
+const SwitchLabel = styled.label`
+  position: relative;
+  display: inline-block;
+  width: 3.5rem;
+  height: 2rem;
+  cursor: pointer;
+`;
+
+const SwitchInput = styled.input`
+  opacity: 0;
+  width: 0;
+  height: 0;
+
+  &:checked + span {
+    background-color: #ffd700;
+  }
+
+  &:checked + span:before {
+    transform: translateX(1.5rem);
+    background-color: #000;
+  }
+`;
+
+const SwitchSlider = styled.span`
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #333;
+  transition: .4s;
+  border-radius: 2rem;
+  border: 2px solid #666;
+
+  &:before {
+    position: absolute;
+    content: "";
+    height: 1.5rem;
+    width: 1.5rem;
+    left: 0.25rem;
+    bottom: 0.125rem;
+    background-color: #ffd700;
+    transition: .4s;
+    border-radius: 50%;
+  }
+
+  &:hover {
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+  }
+`;
+
 const LampImage = styled.img`
   height: 50rem;
   object-fit: contain;
@@ -50,15 +112,22 @@ interface LampProps {
 
 const Lamp: React.FC<LampProps> = ({ isOn, onBulbClick, style }) => {
   return (
-    <LampContainer style={style}>
-      <LampImage
-        src={lamp}
-        alt="lamp"
-        onClick={onBulbClick}
-        style={{ cursor: 'pointer' }}
-      />
-      <LightBeam isOn={isOn} />
-    </LampContainer>
+    <>
+      <SwitchContainer>
+        <SwitchLabel>
+          <SwitchInput type="checkbox" checked={isOn} onChange={onBulbClick} />
+          <SwitchSlider />
+        </SwitchLabel>
+      </SwitchContainer>
+      <LampContainer style={style}>
+        <LampImage
+          src={lamp}
+          alt="lamp"
+          onClick={onBulbClick}
+        />
+        <LightBeam isOn={isOn} />
+      </LampContainer>
+    </>
   );
 };
 

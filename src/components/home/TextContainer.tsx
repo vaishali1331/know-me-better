@@ -7,17 +7,18 @@ import React from 'react';
 
 const Container = styled(motion.div)`
     position: absolute;
-    top: 0;
-    left: 25%;
-    width: 100%;
-    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     gap: 1rem;
     z-index: 2;
-    padding-left: 2rem;
+    padding: 1rem;
+    width: auto;
+    height: auto;
 `;
 
 interface TextContainerProps {

@@ -25,6 +25,10 @@ const HomeContent = styled(motion.div)`
   height: 100%;
   z-index: 1;
   pointer-events: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
 `;
 
 const Home: React.FC = () => {
@@ -33,8 +37,8 @@ const Home: React.FC = () => {
   const [currentScreen, setCurrentScreen] = useState<string | null>(null);
 
   const handleBulbClick = () => {
-    setIsLampOn(!isLampOn);
-    setIsNeon(!isNeon);
+    setIsLampOn(prev => !prev);
+    setIsNeon(prev => !prev);
   };
 
   const handleNavigate = (path: string) => {
@@ -80,12 +84,12 @@ const Home: React.FC = () => {
             exit={{ opacity: 0, filter: "blur(10px)" }}
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
-            <TextContainer isNeon={isLampOn} />
             <Lamp
               isOn={isLampOn}
               onBulbClick={handleBulbClick}
-              style={{ left: '0%', marginBottom: '-2rem' }}
+              style={{ marginBottom: '-2rem' }}
             />
+            <TextContainer isNeon={isLampOn} />
             <DirectionPole directions={directions} onNavigate={handleNavigate} />
           </HomeContent>
         ) : (
