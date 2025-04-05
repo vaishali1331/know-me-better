@@ -10,8 +10,6 @@ import DirectionPole from '../components/home/DirectionPole';
 import TextContainer from '../components/home/TextContainer';
 import Lamp from '../components/home/Lamp';
 import { ScreenContainer } from '../components/common/ScreenContainer';
-import StarsBackground from '../components/common/StarsBackground';
-import CloudsBackground from '../components/common/CloudsBackground';
 import ThemeToggle from '../components/common/ThemeToggle';
 
 const HomeContainer = styled.div`
@@ -33,10 +31,14 @@ const HomeContent = styled(motion.div)`
   padding: 0 2rem;
 `;
 
-const Home: React.FC = () => {
+interface HomeProps {
+  isDayTheme: boolean;
+  onThemeToggle: () => void;
+}
+
+const Home: React.FC<HomeProps> = ({ isDayTheme, onThemeToggle }) => {
   const [isLampOn, setIsLampOn] = useState(false);
   const [currentScreen, setCurrentScreen] = useState<string | null>(null);
-  const [isDayTheme, setIsDayTheme] = useState(false);
 
   useEffect(() => {
     // Update the primary color based on theme
@@ -62,10 +64,6 @@ const Home: React.FC = () => {
 
   const handleBulbClick = () => {
     setIsLampOn(prev => !prev);
-  };
-
-  const handleThemeToggle = () => {
-    setIsDayTheme(prev => !prev);
   };
 
   const handleNavigate = (path: string) => {
@@ -104,7 +102,6 @@ const Home: React.FC = () => {
   return (
     <HomeContainer>
       <AnimatePresence mode="wait">
-        {isDayTheme ? <CloudsBackground /> : <StarsBackground />}
         {!currentScreen ? (
           <HomeContent
             initial={{ opacity: 0, filter: "blur(10px)" }}
@@ -112,7 +109,7 @@ const Home: React.FC = () => {
             exit={{ opacity: 0, filter: "blur(10px)" }}
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
-            {/* <ThemeToggle isDayTheme={isDayTheme} onToggle={handleThemeToggle} /> */}
+            {/* <ThemeToggle isDayTheme={isDayTheme} onToggle={onThemeToggle} /> */}
             <Lamp
               isOn={isLampOn}
               onBulbClick={handleBulbClick}

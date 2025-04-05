@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Home from './screens/Home';
 import StarsBackground from './components/common/StarsBackground';
+import CloudsBackground from './components/common/CloudsBackground';
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
@@ -32,11 +33,13 @@ const AppContainer = styled.div`
 `;
 
 const App: React.FC = () => {
+  const [isDayTheme, setIsDayTheme] = useState(false);
+
   return (
     <AppContainer>
       <GlobalStyle />
-      <StarsBackground />
-      <Home />
+      {isDayTheme ? <CloudsBackground /> : <StarsBackground />}
+      <Home isDayTheme={isDayTheme} onThemeToggle={() => setIsDayTheme(prev => !prev)} />
     </AppContainer>
   );
 };
