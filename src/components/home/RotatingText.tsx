@@ -10,12 +10,12 @@ const texts = [
 ];
 
 const Text = styled(motion.p) <{ isNeon: boolean }>`
-    color: ${props => props.isNeon ? 'white' : 'rgba(255, 255, 255, 0.8)'};
+    color: var(--primary-color);
     font-size: 1.5rem;
     margin: 0;
     text-shadow: ${props => props.isNeon
         ? 'none'
-        : '0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #ff00, 0 0 80px #ff00, 0 0 90px #ff00, 0 0 100px #ff00, 0 0 150px #ff00'};
+        : '0 0 5px var(--primary-color), 0 0 10px var(--primary-color), 0 0 20px var(--primary-color), 0 0 40px #ff00, 0 0 80px #ff00, 0 0 90px #ff00, 0 0 100px #ff00, 0 0 150px #ff00'};
     min-height: 1.5rem;
     text-stroke: ${props => props.isNeon ? '1px rgba(255, 0, 0, 0.5)' : 'none'};
     transition: all 0.3s ease-in-out;
@@ -25,7 +25,7 @@ const Cursor = styled.span<{ isNeon: boolean }>`
     display: inline-block;
     width: 2px;
     height: 1.2em;
-    background-color: ${props => props.isNeon ? 'white' : 'rgba(255, 255, 255, 0.8)'};
+    background-color: var(--primary-color);
     margin-left: 2px;
     animation: blink 1s step-end infinite;
     

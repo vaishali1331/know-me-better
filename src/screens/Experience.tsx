@@ -87,7 +87,7 @@ const TimelineItem = styled.div<{ $isLast?: boolean }>`
       top: 50%;
       width: 2rem;
       height: 2px;
-      background: #ffd700;
+      background: var(--accent-color);
       transform: translateY(-50%);
     }
   }
@@ -104,7 +104,7 @@ const TimelineItem = styled.div<{ $isLast?: boolean }>`
       top: 50%;
       width: 2rem;
       height: 2px;
-      background: #ffd700;
+      background: var(--accent-color);
       transform: translateY(-50%);
     }
   }
@@ -115,8 +115,8 @@ const TimelineItem = styled.div<{ $isLast?: boolean }>`
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: #ffd700;
-    box-shadow: 0 0 10px #ffd700;
+    background: var(--accent-color);
+    box-shadow: 0 0 10px var(--accent-color);
     ${props => props.$isLast ? 'animation: pulse 2s infinite;' : ''}
   }
   
@@ -146,7 +146,7 @@ const TimelineItem = styled.div<{ $isLast?: boolean }>`
 `;
 
 const TimelineContent = styled.div`
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--primary-bg-color);
   padding: 1.5rem;
   border-radius: 8px;
   backdrop-filter: blur(5px);
@@ -169,12 +169,12 @@ const TimelineHeader = styled.div`
 const TimelineTitle = styled.h3`
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
-  color: #ffd700;
+  color: var(--accent-color);
 `;
 
 const CompanyName = styled.span`
   font-size: 1rem;
-  color: #fff;
+  color: var(--primary-color);
   display: block;
   margin-bottom: 0.3rem;
   white-space: nowrap;
@@ -184,7 +184,7 @@ const CompanyName = styled.span`
 
 const TimelineDate = styled.span`
   font-size: 0.9rem;
-  color: #aaa;
+  color: var(--secondary-color);
   display: block;
 `;
 
@@ -210,21 +210,8 @@ const TimelineDescription = styled.div<{ $isOdd: boolean }>`
   }
   
   &::-webkit-scrollbar-thumb {
-    background: #ffd700;
+    background: var(--accent-color);
     border-radius: 3px;
-  }
-`;
-
-const DescriptionItem = styled.div`
-  margin-bottom: 0.5rem;
-  color: #fff;
-  font-size: 0.9rem;
-  line-height: 1.4;
-  
-  &:before {
-    content: '•';
-    color: #ffd700;
-    margin-right: 0.5rem;
   }
 `;
 
@@ -289,7 +276,7 @@ const Experience: React.FC<ExperienceProps> = ({ onBack }) => {
       company: 'TechLearn Pvt Ltd',
       date: 'January 2021 - October 2021',
       description: {
-        text: 'Analyzed complex datasets to extract meaningful insights and drive data-driven decision-making. Created interactive dashboards and reports to visualise key performance metrics.',
+        text: 'Analyzed complex datasets to extract meaningful insights and drive data-driven decision-making. Created interactive dashboards and reports to visualize key performance metrics.',
         highlights: [
           'complex datasets',
           'meaningful insights',

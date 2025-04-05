@@ -10,7 +10,6 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  color: white;
   position: relative;
   overflow: hidden;
   padding-top: 4rem;
@@ -50,7 +49,7 @@ const Section = styled.div`
 `;
 
 const SectionTitle = styled.h2`
-  color: #ffd700;
+  color: var(--accent-color);
   font-size: 2rem;
   text-align: center;
   margin-bottom: 1.5rem;
@@ -87,20 +86,20 @@ const ItemList = styled.div`
 `;
 
 const Item = styled.div`
-  color: #fff;
+  color: var(--primary-color);
   font-size: 1.2rem;
   padding: 1rem;
   text-align: center;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--primary-bg-color);
   border-radius: 8px;
   transition: all 0.3s ease;
   border: 1px solid transparent;
 
   &:hover {
-    color: #ffd700;
+    color: var(--accent-color);
     border-color: rgba(255, 215, 0, 0.3);
     transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.08);
+    background: var(--primary-bg-color);
   }
 `;
 

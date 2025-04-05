@@ -11,7 +11,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  color: white;
+  color: var(--primary-color);
   position: relative;
   overflow: hidden;
   padding-top: 4rem;
@@ -59,7 +59,7 @@ interface AboutMeProps {
 
 const AboutMe: React.FC<AboutMeProps> = ({ onBack }) => {
   const highlightedText = {
-    text: "A Technical Lead with over three years of experience in web development & project management, specialising in solving complex technical challenges with cutting-edge technologies and industry best practices. Skilled at analysing multiple solutions to a problem and identifying the most efficient approach. Known for a hands-on approach, providing technical expertise, strategic guidance & leadership to drive successful project delivery while ensuring high-quality standards and performance optimisation.",
+    text: "A Technical Lead with over three years of experience in web development & project management, specializing in solving complex technical challenges with cutting-edge technologies and industry best practices. Skilled at analyzing multiple solutions to a problem and identifying the most efficient approach. Known for a hands-on approach, providing technical expertise, strategic guidance & leadership to drive successful project delivery while ensuring high-quality standards and performance optimization.",
     highlights: [
       "Technical Lead",
       "web development",
@@ -70,7 +70,7 @@ const AboutMe: React.FC<AboutMeProps> = ({ onBack }) => {
       "technical expertise",
       "strategic guidance",
       "leadership",
-      "performance optimisation"
+      "performance optimization"
     ]
   };
 

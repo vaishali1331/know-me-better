@@ -34,12 +34,12 @@ const SwitchInput = styled.input`
   height: 0;
 
   &:checked + span {
-    background-color: #ffd700;
+    background-color: var(--accent-color);
   }
 
   &:checked + span:before {
     transform: translateX(1.5rem);
-    background-color: #000;
+    background-color: var(--primary-color);
   }
 `;
 
@@ -62,13 +62,13 @@ const SwitchSlider = styled.span`
     width: 1.5rem;
     left: 0.25rem;
     bottom: 0.125rem;
-    background-color: #ffd700;
+    background-color: var(--accent-color);
     transition: .4s;
     border-radius: 50%;
   }
 
   &:hover {
-    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    box-shadow: 0 0 10px var(--accent-color);
   }
 `;
 
@@ -77,6 +77,7 @@ const LampImage = styled.img`
   object-fit: contain;
   position: relative;
   bottom: 0;
+  cursor: pointer;
 `;
 
 const LightBeam = styled(motion.div) <{ isOn: boolean }>`

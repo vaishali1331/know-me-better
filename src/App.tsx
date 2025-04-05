@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import Home from './screens/Home';
 import StarsBackground from './components/common/StarsBackground';
 import { createGlobalStyle } from 'styled-components';
-import { motion, AnimatePresence } from 'framer-motion';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -28,15 +27,6 @@ const GlobalStyle = createGlobalStyle`
 const AppContainer = styled.div`
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(
-    180deg,
-    #000000 0%,
-    #0a0a2a 20%,
-    #1a1a3a 40%,
-    #2a2a4a 60%,
-    #1a1a3a 80%,
-    #0a0a2a 100%
-  );
   position: relative;
   overflow: hidden;
 `;

@@ -132,72 +132,72 @@ const DirectionSign = styled(motion.div) <{ isRightSide: boolean }>`
 `;
 
 interface Direction {
-    text: string;
-    angle: number;
-    path: string;
+  text: string;
+  angle: number;
+  path: string;
 }
 
 interface DirectionSignItemProps {
-    direction: Direction;
-    index: number;
-    onNavigate: (path: string) => void;
+  direction: Direction;
+  index: number;
+  onNavigate: (path: string) => void;
 }
 
 const DirectionSignItem: React.FC<DirectionSignItemProps> = ({ direction, index, onNavigate }) => {
-    const controls = useAnimation();
-    const isRightSide = index % 2 === 0;
+  const controls = useAnimation();
+  const isRightSide = index % 2 === 0;
 
-    const handleClick = async () => {
-        await controls.start({
-            scale: 1.5,
-            transition: { duration: 0.1, ease: "easeOut" }
-        });
-        onNavigate(direction.path);
-    };
+  const handleClick = async () => {
+    await controls.start({
+      scale: 1.5,
+      transition: { duration: 0.1, ease: "easeOut" }
+    });
+    onNavigate(direction.path);
+  };
 
-    return (
-        <DirectionSign
-            isRightSide={isRightSide}
-            animate={controls}
-            initial={{ scale: 1 }}
-            whileHover={{
-                scale: 1.1,
-                transition: { duration: 0.2 }
-            }}
-            onClick={handleClick}
-            style={{
-                top: `${index * 2 + 0.5}rem `,
-                left: isRightSide ? 'auto' : '1rem',
-                right: isRightSide ? '1rem' : 'auto',
-                transformOrigin: isRightSide ? 'right center' : 'left center',
-                zIndex: 1
-            }}
-        >
-            {direction.text}
-        </DirectionSign>
-    );
+  return (
+    <DirectionSign
+      isRightSide={isRightSide}
+      animate={controls}
+      initial={{ scale: 1 }}
+      whileHover={{
+        scale: 1.1,
+        transition: { duration: 0.2 }
+      }}
+      onClick={handleClick}
+      style={{
+        top: `${index * 2 + 0.5}rem `,
+        left: isRightSide ? 'auto' : '1rem',
+        right: isRightSide ? '1rem' : 'auto',
+        transformOrigin: isRightSide ? 'right center' : 'left center',
+        zIndex: 1
+      }}
+    >
+      {direction.text}
+    </DirectionSign>
+  );
 };
 
 interface DirectionPoleProps {
-    directions: Direction[];
-    onNavigate: (path: string) => void;
+  directions: Direction[];
+  onNavigate: (path: string) => void;
 }
 
 const DirectionPole: React.FC<DirectionPoleProps> = ({ directions, onNavigate }) => {
-    return (
-        <DirectionPoleContainer>
-            <Pole>
-                {directions.map((direction, index) => (
-                    <DirectionSignItem
-                        key={index}
-                        direction={direction}
-                        index={index}
-                        onNavigate={onNavigate}
-                    />
-                ))}
-            </Pole>
-        </DirectionPoleContainer>
-    );
+  return (
+    <DirectionPoleContainer>
+      <Pole>
+        {directions.map((direction, index) => (
+          <DirectionSignItem
+            key={index}
+            direction={direction}
+            index={index}
+            onNavigate={onNavigate}
+          />
+        ))}
+      </Pole>
+    </DirectionPoleContainer>
+  );
 };
 
 export default DirectionPole; 

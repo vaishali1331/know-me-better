@@ -14,7 +14,7 @@ interface StarProps {
 const Star = styled.span<StarProps>`
   position: absolute;
   font-size: 0.5em;
-  color: #ffffff;
+  color: var(--primary-color);
   animation: ${twinkle} 2s infinite;
   animation-delay: ${props => props.$delay || '0s'};
 `;
@@ -32,9 +32,9 @@ const Character = styled.span`
   white-space: pre;
   
   &:hover {
-    text-shadow: 0 0 5px #fff, 
-                 0 0 10px #fff, 
-                 0 0 20px #fff, 
+    text-shadow: 0 0 5px var(--primary-color), 
+                 0 0 10px var(--primary-color), 
+                 0 0 20px var(--primary-color), 
                  0 0 40px #ff00, 
                  0 0 80px #ff00, 
                  0 0 90px #ff00, 
@@ -46,8 +46,8 @@ const Character = styled.span`
 const StarryText = styled.h1`
   font-size: 4rem;
   margin-bottom: 2rem;
-  color: #ffffff;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  color: var(--primary-color);
+  text-shadow: 0 0 10px var(--primary-color);
   position: relative;
   display: inline-block;
   cursor: pointer;

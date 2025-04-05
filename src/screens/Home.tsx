@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import AboutMe from '../screens/AboutMe';
 import Experience from '../screens/Experience';
@@ -10,12 +10,14 @@ import DirectionPole from '../components/home/DirectionPole';
 import TextContainer from '../components/home/TextContainer';
 import Lamp from '../components/home/Lamp';
 import { ScreenContainer } from '../components/common/ScreenContainer';
+import StarsBackground from '../components/common/StarsBackground';
+import CloudsBackground from '../components/common/CloudsBackground';
+import ThemeToggle from '../components/common/ThemeToggle';
 
 const HomeContainer = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, #0a0a2a, #1a1a3a);
   overflow: hidden;
 `;
 
@@ -33,12 +35,37 @@ const HomeContent = styled(motion.div)`
 
 const Home: React.FC = () => {
   const [isLampOn, setIsLampOn] = useState(false);
-  const [isNeon, setIsNeon] = useState(true);
   const [currentScreen, setCurrentScreen] = useState<string | null>(null);
+  const [isDayTheme, setIsDayTheme] = useState(false);
+
+  useEffect(() => {
+    // Update the primary color based on theme
+    document.documentElement.style.setProperty(
+      '--primary-color',
+      isDayTheme ? '#001d3d' : 'white'
+    );
+    // Update the secondary color based on theme
+    document.documentElement.style.setProperty(
+      '--secondary-color',
+      isDayTheme ? '#001d3d' : '#aaa'
+    );
+
+    document.documentElement.style.setProperty(
+      '--primary-bg-color',
+      isDayTheme ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.08)'
+    );
+    document.documentElement.style.setProperty(
+      '--secondary-bg-color',
+      isDayTheme ? 'rgba(0, 15, 0, 0.05)' : 'rgba(255, 215, 0, 0.05)'
+    );
+  }, [isDayTheme]);
 
   const handleBulbClick = () => {
     setIsLampOn(prev => !prev);
-    setIsNeon(prev => !prev);
+  };
+
+  const handleThemeToggle = () => {
+    setIsDayTheme(prev => !prev);
   };
 
   const handleNavigate = (path: string) => {
@@ -77,6 +104,7 @@ const Home: React.FC = () => {
   return (
     <HomeContainer>
       <AnimatePresence mode="wait">
+        {isDayTheme ? <CloudsBackground /> : <StarsBackground />}
         {!currentScreen ? (
           <HomeContent
             initial={{ opacity: 0, filter: "blur(10px)" }}
@@ -84,6 +112,7 @@ const Home: React.FC = () => {
             exit={{ opacity: 0, filter: "blur(10px)" }}
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
+            {/* <ThemeToggle isDayTheme={isDayTheme} onToggle={handleThemeToggle} /> */}
             <Lamp
               isOn={isLampOn}
               onBulbClick={handleBulbClick}

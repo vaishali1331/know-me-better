@@ -39,7 +39,6 @@ const Content = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-
   mask-image: linear-gradient(
     to bottom,
     transparent 0%,
@@ -50,7 +49,7 @@ const Content = styled.div`
 `;
 
 const ProjectCard = styled.div`
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--primary-bg-color);;
   border-radius: 12px;
   padding: 2rem;
   margin-bottom: 2rem;
@@ -64,19 +63,19 @@ const ProjectCard = styled.div`
 
 const ProjectTitle = styled.h3`
   font-size: 1.8rem;
-  color: #ffd700;
+  color: var(--accent-color);
   margin-bottom: 0.5rem;
 `;
 
 const ProjectDate = styled.div`
   font-size: 1rem;
-  color: #aaa;
+  color: var(--secondary-color);
   margin-bottom: 1rem;
 `;
 
 const ProjectCompany = styled.div`
   font-size: 1.1rem;
-  color: #fff;
+  color: var(--primary-color);
   margin-bottom: 1.5rem;
   font-style: italic;
 `;
@@ -95,8 +94,8 @@ const TechnologiesList = styled.ul`
 `;
 
 const TechnologyItem = styled.li`
-  background: rgba(255, 215, 0, 0.05);
-  color: #fff;
+  background: var(--secondary-bg-color);
+  color: var(--primary-color);
   padding: 0.5rem 1rem;
   border-radius: 20px;
   font-size: 0.9rem;
@@ -106,7 +105,7 @@ const TechnologyItem = styled.li`
 const ProjectDescription = styled.div`
   font-size: 1rem;
   line-height: 1.6;
-  color: #fff;
+  color: var(--primary-color);
 `;
 
 const StyledHighlightedText = styled(HighlightedText)`
@@ -114,7 +113,7 @@ const StyledHighlightedText = styled(HighlightedText)`
 `;
 
 const ProjectLink = styled.a`
-  color: #ffd700;
+  color: var(--accent-color);
   text-decoration: none;
   font-size: 0.9rem;
   display: inline-flex;

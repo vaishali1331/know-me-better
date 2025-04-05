@@ -7,9 +7,9 @@ const BackButtonContainer = styled(motion.button)`
   position: absolute;
   top: 1.25rem;
   left: 1.25rem;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--primary-bg-color);
   border: none;
-  color: white;
+  color: var(--primary-color);
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
@@ -29,21 +29,21 @@ const ChevronIcon = styled(IoChevronBack)`
 `;
 
 interface BackButtonProps {
-    onBack: () => void;
+  onBack: () => void;
 }
 
 const BackButton: React.FC<BackButtonProps> = ({ onBack }) => {
-    return (
-        <BackButtonContainer
-            onClick={onBack}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-        >
-            <ChevronIcon />
-        </BackButtonContainer>
-    );
+  return (
+    <BackButtonContainer
+      onClick={onBack}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      <ChevronIcon />
+    </BackButtonContainer>
+  );
 };
 
 export default BackButton; 

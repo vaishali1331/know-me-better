@@ -80,9 +80,9 @@ const SocialLink = styled.a<{ angle: number; radius: number }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--secondary-bg-color);
   border-radius: 50%;
-  color: white;
+  color: var(--primary-color);
   font-size: 2rem;
   text-decoration: none;
   transition: all 0.3s ease;
@@ -107,8 +107,8 @@ const SocialLink = styled.a<{ angle: number; radius: number }>`
     bottom: -2.5rem;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
+    background: var(--primary-bg-color);
+    color: var(--primary-color);
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
     font-size: 0.875rem;
