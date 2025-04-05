@@ -1,27 +1,31 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { IoChevronBack } from 'react-icons/io5';
 
 const BackButtonContainer = styled(motion.button)`
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 1.25rem;
+  left: 1.25rem;
   background: rgba(255, 255, 255, 0.1);
   border: none;
   color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
   cursor: pointer;
-  font-family: 'Arial', sans-serif;
-  font-size: 1rem;
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
   z-index: 10;
 
   &:hover {
     background: rgba(255, 255, 255, 0.2);
   }
+`;
+
+const ChevronIcon = styled(IoChevronBack)`
+  font-size: 1.2rem;
 `;
 
 interface BackButtonProps {
@@ -37,7 +41,7 @@ const BackButton: React.FC<BackButtonProps> = ({ onBack }) => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
         >
-            ← Back to Home
+            <ChevronIcon />
         </BackButtonContainer>
     );
 };
